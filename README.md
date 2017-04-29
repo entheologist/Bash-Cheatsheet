@@ -333,8 +333,8 @@ Consider the following scenario:
   $ echo
 ```
 Substitution | Explanation | Output
---- | ---
-${parameter-default} | If the parameter variable is unset, its is substituted with "default" | default
+--- | --- | ---
+${parameter-default} | If the parameter variable is unset, its is substituted with the word default | default
 ${parameter:-default} | The only difference the : makes, is it recognises NULL as a value, hence no substitution | NULL
 ${parameter-$var} | If the parameter variable is not set, its value is substituted with that of the $var variable | VALUE
 ${parameter+default} | If parameter IS set, its value is substituted with the word default | NULL
