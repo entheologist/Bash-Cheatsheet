@@ -312,9 +312,35 @@ Shortcut | Description
 CTRL-A | Move cursor to beginning of line
 CTRL-E | Move cursor to end of line
 CTRL-R | Search bash history
+CTRL-N | Walk forward in history
 CTRL-W | Cut the last word
 CTRL-U | Cut everything before the cursor
 CTRL-K | Cut everything after the cursor
 CTRL-Y | Paste the last thing to be cut
 CTRL-_ | Undo
 CTRL-L | Clears terminal screen
+
+
+
+## Parameter Manipulations
+
+### Parameter Substitutions
+
+Consider the following scenario:
+```
+  $ var="VALUE";
+  $ parameter=NULL;
+  $ echo
+```
+Substitution | Explanation | Output
+--- | ---
+${parameter-default} | If the parameter variable is unset, its is substituted with "default" | default
+${parameter:-default} | The only difference the : makes, is it recognises NULL as a value, hence no substitution | NULL
+${parameter-$var} | If the parameter variable is not set, its value is substituted with that of the $var variable | VALUE
+${parameter+default} | If parameter IS set, its value is substituted with the word default "default" | NULL
+${parameter:+default} | Same situation as above, only with NULL being considered a value | default
+${parameter?default} | If parameter is unset, the expansion of the word default is written to stderr. If the shell is non interactive, an exit signal is sent. | 
+
+
+
+
