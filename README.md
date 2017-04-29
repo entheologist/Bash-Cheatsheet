@@ -322,9 +322,9 @@ CTRL-L | Clears terminal screen
 
 
 
-## Parameter Manipulations
+## Shell Substitutions and Expansions
 
-### Parameter Substitutions
+### Parameter Expansions Substitutions
 
 Consider the following scenario:
 ```
@@ -342,5 +342,24 @@ ${parameter:+default} | Same situation as above, only with NULL being considered
 ${parameter?default} | If parameter is unset, the expansion of the word default is written to stderr. If the shell is non interactive, an exit signal is sent. | Exit code sent
 
 
+### Substring Expansions
+This is a method of cut a piece of the value off. Substring expansions take the following format:
+```
+${parameter:start}
+${parameter:start:end}
+```
 
+Consider the following example:
+```
+$ string=01234567890ABCDEFGHI
+$ echo
+```
 
+Expansion | Output
+--- | ---
+${string:9} | 90ABCDEFGHI
+${string:9:0} | 
+${string:9:3} | 90A
+${string:9:-3} | 90ABCDEF
+${string: -3} | GHI
+${string: -3:-1} | GH
