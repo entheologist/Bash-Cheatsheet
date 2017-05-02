@@ -206,7 +206,23 @@ For example, the following sends the `ls` output to `head` so that only the top 
 ```
   $ ls -l | head
 ```
+
 ## Input/Output Redirection
+The input received by the shell is known as the standard input, or `STDIN` and is given the code `0`.<br>
+The output from the shell is known as the standard output, or `STDOUT` and is given the code `1`.<br>
+Errors reported by the shell are known as standard error, or `STDERR` and are given the code `2`. <br><br>
+
+These 3 forms in input/output can be manipulated in various ways. For these examples, consider a file, named file.txt which contains some text. <br>
+
+Character | Explanation | Example | Example Output 
+--- | --- | --- | ---
+ `>` | Redirects standard output to the contents of file | echo 'Line of text' > file.txt; cat file.txt | Line of text.
+ `>>` | Appends the standard out to the contents of a file | echo ' Another line of text' >> file.txt; cat file.txt | Line of text. Another line of text. 
+ `<` | Takes the contents of a file as its standard input | file.txt < cat | Line of text. Another line of text. 
+ `<<` | Takes the contents of a here doc as its standard input | An example can't be provided here. A here-doc is basically text in a script which the shell interprets as a file. | n/a
+ `<<<` | Takes the contents of a here-string as standard input | cat <<< $(lsb_release -c) | Codename: yakkety
+
+
 ### Output Redirection
 Standard output redirection uses the symbols `>` and `>>`. <br>
 For example, the following sends the output of `ls` into the file instead of printing to the screen.
@@ -260,6 +276,7 @@ For example, if I only wanted to redirect "stderr" to the file `test.txt` from t
   $ cat test.txt
   stderr
 ```
+
 ## Permissions
 The command `ls -l` prints out a lot of information about each file that is informative about the permissions.
 ```
