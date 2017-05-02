@@ -363,3 +363,20 @@ ${string:9:3} | 90A
 ${string:9:-3} | 90ABCDEF
 ${string: -3} | GHI
 ${string: -3:-1} | GH
+
+### Pattern Matching Substitutions
+
+```
+$ FILE=/home/user/dir/src/file.ext
+$ echo
+```
+Substitution | Output | Explanation
+--- | --- | ---
+${FILE#/*/} | user/dir/src/file.ext | # Removes the minimim number of matching prefixes
+${FILE##/*/} | file.ext | ## Removes the maximum number of matching prefixes
+${FILE%/*} | /home/user/dir/src | % Removes the minimim number of matching suffixes
+${FILE%%/*} | null | Removes the maximum number of matching suffixes
+${FILE%%/home/user} | /dir/src/file | Example of removing known part of a string
+${FILE%%.*} | /home/user/dir/src/file | Example of removing a file extension from path
+${FILE##*.} | ext | Example of getting a file extension from path
+
